@@ -1,25 +1,19 @@
 package ga.endedglory.keymasher;
 
-import static java.awt.event.KeyEvent.VK_ALT;
-
-import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Robot;
 import java.awt.event.ActionEvent;
-
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class guiStop {
 
 	private JFrame frame;
 	private final Action action = new SwingAction();
-    private Robot robot;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -70,13 +64,7 @@ public class guiStop {
 		public void actionPerformed(ActionEvent e) {
 			frame.setVisible(false);
 			frame.dispose();
-			JOptionPane.showMessageDialog(null, "Stopped!");
-			System.out.println("Stopped!");
-			try {
-				robot = new Robot();
-			} catch (AWTException e1) {}
-			robot.keyRelease(VK_ALT); 
-			System.exit(0);
+			main.stop = true;
 		}
 	}
 }

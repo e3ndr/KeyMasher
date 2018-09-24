@@ -8,10 +8,11 @@ import java.awt.Robot;
 import javax.swing.JOptionPane;
 
 public class main {
-    private Robot robot;
+    private static Robot robot;
 
     public static String text;
     public static Boolean start = false;
+    public static Boolean stop = false;
     
     public static void main(String[] args) throws AWTException, InterruptedException {
         main keyboard = new main();
@@ -22,21 +23,25 @@ public class main {
         		JOptionPane.showMessageDialog(null, "Repeating \"" + text + "\" in 10 seconds. Press \"Stop\" to stop.");
         		System.out.println("Repeating \"" + text + "\" in 10 seconds. Press \"Stop\" to stop.");
         		ga.endedglory.keymasher.guiStop.main(args);
-        	//	Thread.sleep(10000);
-        		while (true) {
+        		Thread.sleep(10000);
+        		while (stop == false) {
         			Thread.sleep(20);
         			keyboard.type(text);
         		}
+        		JOptionPane.showMessageDialog(null, "Stopped!");
+    			System.out.println("Stopped!");
+        		robot.keyRelease(VK_ALT);
+        		System.exit(0);
         	}
         }
     }
 
     public main() throws AWTException {
-        this.robot = new Robot();
+        main.robot = new Robot();
     }
 
     public main(Robot robot) {
-        this.robot = robot;
+        main.robot = robot;
     }
 
     public void type(CharSequence characters) {
